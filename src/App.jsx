@@ -20,12 +20,13 @@ function App() {
 
           </div>
          
-          <Offcanvas show={showOffCanvas} onHide={handleCloseOffCanvas}>
-            <Offcanvas.Header closeButton>
-              <Offcanvas.Title>Aggiungi meta</Offcanvas.Title>
+          <Offcanvas className="offcanvas-container" show={showOffCanvas} onHide={handleCloseOffCanvas} placement='end'>
+            <Offcanvas.Header className='offcanvas-header p-0' closeButton>
+              <h3 className='p-0'>Aggiungi meta</h3>
+
             </Offcanvas.Header>
-            <Offcanvas.Body>
-              <div className="form-container  global-input">
+            <Offcanvas.Body className='p-0'>
+              <div className="form-container global-input-title  global-input">
                 <form action="">
                   <h4>Luogo</h4>
                   <input type="text" />
@@ -41,6 +42,8 @@ function App() {
 
                   <h4>Descrizione</h4>
                   <textarea name="" id=""></textarea>
+
+                  <button>invia</button>
                 </form>
               </div>
             </Offcanvas.Body>

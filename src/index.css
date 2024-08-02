@@ -1,3 +1,12 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+main{
+  max-height: 100vh;
+}
 .global-text {
   color: var(--text-color);
   font-family: "Poppins", sans-serif;
@@ -21,3 +30,14 @@
 }
 
 
+.offcanvas-container{
+  font-family: "Poppins", sans-serif;
+  bottom: initial;
+  margin-top: 10px;
+  border-radius: 14px 0 0  14px;
+  background-color: var(--beige-background);
+}
+
+.global-input-title h4 {
+  margin: 0;
+}
