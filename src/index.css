@@ -12,32 +12,57 @@ main{
   font-family: "Poppins", sans-serif;
 }
 
-
-.btn-meta {
+.btn-default{
   all: unset;
   font-weight: bold;
-  font-size: 24px;
-  text-transform: uppercase;
   background-color: var(--verde-acqua-background);
   border: var(--celeste-border) solid 1px;
   border-radius: 4px;
-  padding: 10px 22px;
+  
 }
 
-.btn-meta:hover{
+.btn-default:hover{
   background-color: var(--verde-scuro-background);
   border: var(--blu-border) solid 1px;
 }
+
+.btn-meta {
+  font-size: 24px;
+  padding: 10px 22px;
+  text-transform: uppercase;
+}
+
+
 
 
 .offcanvas-container{
   font-family: "Poppins", sans-serif;
   bottom: initial;
   margin-top: 10px;
+  padding: 20px 24px 20px 34px;
   border-radius: 14px 0 0  14px;
   background-color: var(--beige-background);
+ 
 }
 
-.global-input-title h4 {
-  margin: 0;
+.form-container{
+  margin-top: 20px;
+
+}
+
+.offcanvas-container textarea{
+  resize: none;
+}
+
+
+
+.global-input-title h5 {
+  margin: 16px 0 4px 0;
+}
+
+
+.btn-form {
+  margin-top: 10px;
+  padding: 2px 10px;
+
 }
