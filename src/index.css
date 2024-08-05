@@ -12,6 +12,8 @@ main{
   font-family: "Poppins", sans-serif;
 }
 
+
+
 .btn-default{
   all: unset;
   font-weight: bold;
@@ -26,6 +28,8 @@ main{
   border: var(--blu-border) solid 1px;
 }
 
+
+
 .btn-meta {
   font-size: 24px;
   padding: 10px 22px;
@@ -34,7 +38,7 @@ main{
 
 
 
-
+/* ---------------offcanvas---------------- */
 .offcanvas-container{
   font-family: "Poppins", sans-serif;
   bottom: initial;
@@ -65,4 +69,19 @@ main{
   margin-top: 10px;
   padding: 2px 10px;
 
+}
+/*- ---------------offcanvas---------------- -*/
+
+.cal-map-container{
+  border: green solid 2px;
+  height: 350px;
+  width: 100%;
+  display: flex;
+}
+.Calendar{
+  border: red solid 2px;
+  
+}
+.Map{
+  border: blue solid 2px;
 }

@@ -10,8 +10,8 @@ function App() {
   return (
     <>
       
-      <main className='container py-3 global-text'>
-        <div className='container-travel d-flex justify-content-between align-items-center'>
+      <main className='container py-4 global-text'>
+        <div className='pb-5 d-flex justify-content-between align-items-center'>
           <h1 className='fw-semibold'>Pianifica il tuo viaggio</h1>
           <div>
             <button onClick={handleShowOffCanvas} className='btn-default btn-meta'>
@@ -53,9 +53,9 @@ function App() {
         </div>
       
 
-        <div className="cal-map-container">
-          <div className="Calendar">Calendario</div>
-          <div className="Map">Mappa</div>
+        <div className="cal-map-container m-0 row g-4">
+          <div className="col-4 m-0 ps-0"><div className="Calendar h-100">Calendario</div></div>
+          <div className="col-8  m-0 pe-0"><div className="Map h-100">Mappa</div></div>
         </div>
         <div>
           <div>
