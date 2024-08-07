@@ -72,16 +72,81 @@ main{
 }
 /*- ---------------offcanvas---------------- -*/
 
+/*---------------calendario e mappa ----------------*/
+
 .cal-map-container{
-  border: green solid 2px;
+  
   height: 350px;
   width: 100%;
   display: flex;
+ 
 }
 .Calendar{
-  border: red solid 2px;
-  
+  border: var(--blu-border) solid 2px;
+  border-radius: 4px;
 }
 .Map{
-  border: blue solid 2px;
+  border: var(--blu-border) solid 2px;
+  border-radius: 4px;
 }
+
+/*- ---------------calendario e mappa ---------------- -*/
+
+/*---------------accordion ----------------*/
+
+.accordion-checkbox-container {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  align-items: center;
+  height: 20px;
+  width: 20px;
+  margin-right: 10px;
+}
+
+.accordion-checkbox {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.custom-checkbox {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  border: var(--grey-border) solid 1px;
+  border-radius: 4px;
+  
+  
+}
+
+.accordion-checkbox-container:hover .custom-checkbox {
+  border-color: var( --yellow-border);
+  background-color: var(--grey-background);
+}
+
+.custom-checkbox:after {
+  content: '\2716';
+  position: absolute;
+  display: none;
+}
+
+.accordion-checkbox:checked ~ .custom-checkbox:after {
+  display: block;
+}
+
+.accordion-checkbox-container .custom-checkbox:after {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+
+
+
+/*- ---------------calendario e mappa ---------------- -*/

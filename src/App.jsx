@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import  Offcanvas  from 'react-bootstrap/Offcanvas';
+import {Offcanvas, Accordion}   from 'react-bootstrap';
 
 function App() {
   const [showOffCanvas, setShowOffCanvas] = useState(false);
@@ -53,17 +53,21 @@ function App() {
         </div>
       
 
-        <div className="cal-map-container m-0 row g-4">
+        <div className="cal-map-container m-0 mb-5  row g-4">
           <div className="col-4 m-0 ps-0"><div className="Calendar h-100">Calendario</div></div>
           <div className="col-8  m-0 pe-0"><div className="Map h-100">Mappa</div></div>
         </div>
         <div>
-          <div>
-            <h5>Titolo</h5>
-            <input type="checkbox" />
-          </div>
-          
-          <div>
+        <Accordion>
+          <Accordion.Item eventKey="0">
+            <Accordion.Header>  
+            <label className="accordion-checkbox-container">
+              <input className='accordion-checkbox' type="checkbox" />
+              <span className="custom-checkbox"></span>
+            </label>
+            <h5 className='mb-0'>Titolo</h5>
+            </Accordion.Header>
+            <Accordion.Body>
             <div className="img-travel-container">
               <img src="." alt="img" className="img-travel"/>
             </div>
@@ -72,7 +76,11 @@ function App() {
               <button className="edit-btn">Modifica</button>
               <button className="delete-btn">Elimina</button>
             </div>
-          </div>
+            </Accordion.Body>
+          </Accordion.Item>
+        </Accordion>
+
+        
           
 
         </div>
