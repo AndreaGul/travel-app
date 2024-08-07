@@ -59,23 +59,42 @@ function App() {
         </div>
         <div>
         <Accordion>
-          <Accordion.Item eventKey="0">
-            <Accordion.Header>  
-            <label className="accordion-checkbox-container">
-              <input className='accordion-checkbox' type="checkbox" />
-              <span className="custom-checkbox"></span>
-            </label>
-            <h5 className='mb-0'>Titolo</h5>
+          <Accordion.Item eventKey="0" className='accordion-item'>
+            <Accordion.Header className='custon-accordion-header'>  
+              <label className="accordion-checkbox-container">
+                <input className='accordion-checkbox' type="checkbox" />
+                <span className="custom-checkbox"></span>
+              </label>
+              <h5 className='mb-0'>Titolo</h5>
             </Accordion.Header>
             <Accordion.Body>
-            <div className="img-travel-container">
-              <img src="." alt="img" className="img-travel"/>
-            </div>
-            <p className="Description">Descrizione</p>
-            <div>
-              <button className="edit-btn">Modifica</button>
-              <button className="delete-btn">Elimina</button>
-            </div>
+              <div className="img-travel-container">
+                <img src="." alt="img" className="img-travel"/>
+              </div>
+              <p className="Description">Descrizione</p>
+              <div>
+                <button className="edit-btn">Modifica</button>
+                <button className="delete-btn">Elimina</button>
+              </div>
+            </Accordion.Body>
+          </Accordion.Item>
+          <Accordion.Item eventKey="1" className='accordion-item'>
+            <Accordion.Header className='custon-accordion-header'>  
+              <label className="accordion-checkbox-container">
+                <input className='accordion-checkbox' type="checkbox" />
+                <span className="custom-checkbox"></span>
+              </label>
+              <h5 className='mb-0'>Titolo</h5>
+            </Accordion.Header>
+            <Accordion.Body>
+              <div className="img-travel-container">
+                <img src="." alt="img" className="img-travel"/>
+              </div>
+              <p className="Description">Descrizione</p>
+              <div>
+                <button className="edit-btn">Modifica</button>
+                <button className="delete-btn">Elimina</button>
+              </div>
             </Accordion.Body>
           </Accordion.Item>
         </Accordion>

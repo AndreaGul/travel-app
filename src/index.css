@@ -94,14 +94,31 @@ main{
 
 /*---------------accordion ----------------*/
 
+.accordion-item{
+  border: var(--blu-border) solid 2px;
+}
+/*---------------accordion header -----------------*/
+
+.custon-accordion-header .accordion-button:not(.collapsed)
+{
+  background-color: var(--verde-acqua-background);
+} 
+
+.custon-accordion-header  .accordion-button:focus {
+  box-shadow: none;
+}
+
+
+/*---------------accordion checkbox----------------*/
+
 .accordion-checkbox-container {
   display: inline-block;
   position: relative;
   cursor: pointer;
   user-select: none;
   align-items: center;
-  height: 20px;
-  width: 20px;
+  height: 26px;
+  width: 26px;
   margin-right: 10px;
 }
 
@@ -115,9 +132,9 @@ main{
 
 .custom-checkbox {
   display: inline-block;
-  width: 20px;
-  height: 20px;
-  background-color: #fff;
+  width: 26px;
+  height: 26px;
+  background-color: var(--white-background);
   border: var(--grey-border) solid 1px;
   border-radius: 4px;
   
@@ -131,6 +148,7 @@ main{
 
 .custom-checkbox:after {
   content: '\2716';
+  font-size: 20px;
   position: absolute;
   display: none;
 }
@@ -145,8 +163,10 @@ main{
   transform: translate(-50%, -50%);
 }
 
+/*- ---------------accordion checkbox ---------------- -*/
 
 
+/*- ---------------accordion header ----------------- -*/
 
 
-/*- ---------------calendario e mappa ---------------- -*/
+/*- ---------------accordion ---------------- -*/
