@@ -168,21 +168,63 @@ main{
 
 /*- ---------------accordion header ----------------- -*/
 
+/*---------------accordion body ----------------*/
 
 
 .img-travel-container{
-  width: 200px;
-  height: 150px;
   border: solid var(--grey-border) 1px;
   border-radius: 4px;
 }
 
 .img-travel-container img{
   display: block;
-  height: 100%;
-  width: 100%;
+  width: 200px;
+  height: 150px;
   object-fit: cover;
   object-position:  center center;
 }
+
+.descr-btn-containter{
+  height: 150px;
+}
+.Description{
+  font-size: 18px;
+  overflow-y: scroll;
+  margin: 4px;
+}
+
+.acc-default-btn{
+  all: unset;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 10px;
+  border-radius: 4px;
+  font-size: 20px;
+  color: white;
+}
+
+.edit-btn {
+  background-color: var(--ligh-cyan-background);
+  
+}
+
+.edit-btn:hover{
+  background-color: var(--dark-cyan-background);
+  color: white;
+}
+
+.delete-btn {
+  background-color: var(--ligh-red-background);
+}
+
+.delete-btn:hover{
+  background-color: var(--dark-red-background);
+  
+}
+
+
+/*---------------accordion body ----------------*/
+
 
 /*- ---------------accordion ---------------- -*/

@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import {Offcanvas, Accordion}   from 'react-bootstrap';
+import { MdDelete } from "react-icons/md";
+import { MdEdit } from "react-icons/md";
+import { FaSave } from "react-icons/fa";
 
 function App() {
   const [showOffCanvas, setShowOffCanvas] = useState(false);
@@ -67,15 +70,21 @@ function App() {
               </label>
               <h5 className='mb-0'>Titolo</h5>
             </Accordion.Header>
-            <Accordion.Body  className='d-flex '>
-              <div className="img-travel-container ">
+            <Accordion.Body  className='d-flex'>
+              
+              <div className="img-travel-container me-4 ">
                 <img src="https://store-images.s-microsoft.com/image/apps.30323.14537704372270848.6ecb6038-5426-409a-8660-158d1eb64fb0.08703491-f5dc-4b00-bca6-486b7b293c17?q=90&w=480&h=270" alt="img" className="img-travel"/>
               </div>
-              <div className='ms-4 flex-grow-1 d-flex flex-column '>
-                <p className="Description mb-auto">Descrizione</p>
-                <div className='d-flex'>
-                  <button className="edit-btn me-auto">Modifica</button>
-                  <button className="delete-btn">Elimina</button>
+              
+              
+              <div className='d-flex descr-btn-containter '>
+                <div className='Description'>
+                  <p className=" mb-auto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, voluptas quaerat distinctio itaque consequuntur veritatis voluptatibus et, repellat voluptate consectetur iusto commodi iste obcaecati error eligendi sint amet laudantium porro?Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium quae culpa aliquam! Cupiditate totam quos, aliquam earum impedit modi quo asperiores officia, aspernatur, tempore nobis animi necessitatibus hic quaerat in!</p>
+                </div>
+                <div className='d-flex  flex-column'>
+                  <button className="mb-auto acc-default-btn edit-btn"><MdEdit /></button>
+                  {/* <button className="mb-auto acc-default-btn edit-btn"><FaSave /></button> */}
+                  <button className="acc-default-btn delete-btn"><MdDelete /></button>
                 </div>
               </div>
               
@@ -89,15 +98,24 @@ function App() {
               </label>
               <h5 className='mb-0'>Titolo</h5>
             </Accordion.Header>
-            <Accordion.Body className='d-flex'>
-              <div className="img-travel-container">
-                <img src="." alt="img" className="img-travel"/>
+            <Accordion.Body  className='d-flex'>
+              
+              <div className="img-travel-container me-4 ">
+                <img src="https://store-images.s-microsoft.com/image/apps.30323.14537704372270848.6ecb6038-5426-409a-8660-158d1eb64fb0.08703491-f5dc-4b00-bca6-486b7b293c17?q=90&w=480&h=270" alt="img" className="img-travel"/>
               </div>
-              <p className="Description">Descrizione</p>
-              <div>
-                <button className="edit-btn">Modifica</button>
-                <button className="delete-btn">Elimina</button>
+              
+              
+              <div className='d-flex descr-btn-containter '>
+                <div className='Description'>
+                  <p className=" mb-auto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, voluptas quaerat distinctio itaque consequuntur veritatis voluptatibus et, repellat voluptate consectetur iusto commodi iste obcaecati error eligendi sint amet laudantium porro?Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium quae culpa aliquam! Cupiditate totam quos, aliquam earum impedit modi quo asperiores officia, aspernatur, tempore nobis animi necessitatibus hic quaerat in!</p>
+                </div>
+                <div className='d-flex  flex-column'>
+                  <button className="mb-auto acc-default-btn edit-btn"><MdEdit /></button>
+                  {/* <button className="mb-auto acc-default-btn edit-btn"><FaSave /></button> */}
+                  <button className="acc-default-btn delete-btn"><MdDelete /></button>
+                </div>
               </div>
+              
             </Accordion.Body>
           </Accordion.Item>
         </Accordion>
