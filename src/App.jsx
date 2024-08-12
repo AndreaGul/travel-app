@@ -61,7 +61,7 @@ function App() {
           <div className="col-8  m-0 pe-0"><div className="Map h-100">Mappa</div></div>
         </div>
         <div>
-        <Accordion>
+        <Accordion className='pb-4'>
           <Accordion.Item eventKey="0" className='accordion-item'>
             <Accordion.Header className='custon-accordion-header'>  
               <label className="accordion-checkbox-container">
@@ -72,13 +72,13 @@ function App() {
             </Accordion.Header>
             <Accordion.Body  className='d-flex'>
               
-              <div className="img-travel-container me-4 ">
+              <div className="img-travel-container me-3">
                 <img src="https://store-images.s-microsoft.com/image/apps.30323.14537704372270848.6ecb6038-5426-409a-8660-158d1eb64fb0.08703491-f5dc-4b00-bca6-486b7b293c17?q=90&w=480&h=270" alt="img" className="img-travel"/>
               </div>
               
               
               <div className='d-flex descr-btn-containter '>
-                <div className='Description'>
+                <div className='Description me-2'>
                   <p className=" mb-auto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, voluptas quaerat distinctio itaque consequuntur veritatis voluptatibus et, repellat voluptate consectetur iusto commodi iste obcaecati error eligendi sint amet laudantium porro?Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium quae culpa aliquam! Cupiditate totam quos, aliquam earum impedit modi quo asperiores officia, aspernatur, tempore nobis animi necessitatibus hic quaerat in!</p>
                 </div>
                 <div className='d-flex  flex-column'>
@@ -100,13 +100,13 @@ function App() {
             </Accordion.Header>
             <Accordion.Body  className='d-flex'>
               
-              <div className="img-travel-container me-4 ">
+              <div className="img-travel-container me-3 ">
                 <img src="https://store-images.s-microsoft.com/image/apps.30323.14537704372270848.6ecb6038-5426-409a-8660-158d1eb64fb0.08703491-f5dc-4b00-bca6-486b7b293c17?q=90&w=480&h=270" alt="img" className="img-travel"/>
               </div>
               
               
               <div className='d-flex descr-btn-containter '>
-                <div className='Description'>
+                <div className='Description me-2'>
                   <p className=" mb-auto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, voluptas quaerat distinctio itaque consequuntur veritatis voluptatibus et, repellat voluptate consectetur iusto commodi iste obcaecati error eligendi sint amet laudantium porro?Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium quae culpa aliquam! Cupiditate totam quos, aliquam earum impedit modi quo asperiores officia, aspernatur, tempore nobis animi necessitatibus hic quaerat in!</p>
                 </div>
                 <div className='d-flex  flex-column'>
