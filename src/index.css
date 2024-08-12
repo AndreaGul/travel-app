@@ -169,4 +169,20 @@ main{
 /*- ---------------accordion header ----------------- -*/
 
 
+
+.img-travel-container{
+  width: 200px;
+  height: 150px;
+  border: solid var(--grey-border) 1px;
+  border-radius: 4px;
+}
+
+.img-travel-container img{
+  display: block;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position:  center center;
+}
+
 /*- ---------------accordion ---------------- -*/

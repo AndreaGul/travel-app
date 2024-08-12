@@ -67,15 +67,18 @@ function App() {
               </label>
               <h5 className='mb-0'>Titolo</h5>
             </Accordion.Header>
-            <Accordion.Body>
-              <div className="img-travel-container">
-                <img src="." alt="img" className="img-travel"/>
+            <Accordion.Body  className='d-flex '>
+              <div className="img-travel-container ">
+                <img src="https://store-images.s-microsoft.com/image/apps.30323.14537704372270848.6ecb6038-5426-409a-8660-158d1eb64fb0.08703491-f5dc-4b00-bca6-486b7b293c17?q=90&w=480&h=270" alt="img" className="img-travel"/>
               </div>
-              <p className="Description">Descrizione</p>
-              <div>
-                <button className="edit-btn">Modifica</button>
-                <button className="delete-btn">Elimina</button>
+              <div className='ms-4 flex-grow-1 d-flex flex-column '>
+                <p className="Description mb-auto">Descrizione</p>
+                <div className='d-flex'>
+                  <button className="edit-btn me-auto">Modifica</button>
+                  <button className="delete-btn">Elimina</button>
+                </div>
               </div>
+              
             </Accordion.Body>
           </Accordion.Item>
           <Accordion.Item eventKey="1" className='accordion-item'>
@@ -86,7 +89,7 @@ function App() {
               </label>
               <h5 className='mb-0'>Titolo</h5>
             </Accordion.Header>
-            <Accordion.Body>
+            <Accordion.Body className='d-flex'>
               <div className="img-travel-container">
                 <img src="." alt="img" className="img-travel"/>
               </div>
