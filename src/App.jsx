@@ -20,6 +20,8 @@ function App() {
   })
 
   const [items, setItems] = useState([]);
+  const [isEditing, setIsEditing] = useState(false);
+  const [currentEditIndex, setCurrentEditIndex] = useState(null)
 
   const handleChange = (e)=>{
     const { name, value, type, files} = e.target;
@@ -31,7 +33,17 @@ function App() {
 
   const handleSubmit = (e)=>{
     e.preventDefault();
-    setItems([...items, formData]);
+    if(isEditing){
+      setItems(
+        items.map((item,index)=>
+        index === currentEditIndex ? formData : item)
+      )
+      handleCloseOffCanvas();
+    }
+    else{
+      setItems([...items, formData]);   
+    }
+   
 
     setFormData({
       titolo:'',
@@ -44,6 +56,13 @@ function App() {
 
   const handleDelete= (indexD) => {
     setItems(items.filter((e,index) => index !== indexD))
+  }
+
+  const handleEdit= (indexE) => {
+    handleShowOffCanvas();
+    setFormData(items[indexE]);
+    setIsEditing(true);
+    setCurrentEditIndex(indexE);
   }
 
   console.log(items);
@@ -63,7 +82,7 @@ function App() {
           
           <Offcanvas className="offcanvas-container" show={showOffCanvas} onHide={handleCloseOffCanvas} placement='end'>
             <Offcanvas.Header className='offcanvas-header p-0' closeButton>
-              <h3 className='p-0 m-0'>Aggiungi meta</h3>
+              <h3 className='p-0 m-0'>{isEditing ? 'Modifica' : 'Aggiungi meta'}Aggiungi meta</h3>
 
             </Offcanvas.Header>
             <Offcanvas.Body className='p-0'>
@@ -86,7 +105,7 @@ function App() {
                   <h5>Descrizione</h5>
                   <textarea rows={4} className="w-100 d-block" name="descrizione" value={formData.descrizione} onChange={handleChange}></textarea>
 
-                  <button type='submit' className='btn-default btn-form'>Aggiungi</button>
+                  <button type='submit' className='btn-default btn-form'>{isEditing ? 'Conferma' : 'Aggiungi'}</button>
                 </form>
               </div>
             </Offcanvas.Body>
@@ -120,7 +139,7 @@ function App() {
                   <p className=" mb-auto">{item.descrizione}</p>
                 </div>
                 <div className='d-flex  flex-column'>
-                  <button className="mb-auto acc-default-btn edit-btn"><MdEdit /></button>
+                  <button onClick={()=> handleEdit(index)} className="mb-auto acc-default-btn edit-btn"><MdEdit /></button>
                   {/* <button className="mb-auto acc-default-btn edit-btn"><FaSave /></button> */}
                   <button onClick={()=> handleDelete(index)} className="acc-default-btn delete-btn"><MdDelete /></button>
                 </div>
