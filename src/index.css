@@ -198,6 +198,7 @@ main{
   font-size: 18px;
   overflow-y: scroll;
   margin: 4px;
+  width: auto;
 }
 
 .acc-default-btn{

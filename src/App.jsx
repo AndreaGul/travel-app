@@ -112,7 +112,7 @@ function App() {
               
               
               <div className='d-flex descr-btn-containter '>
-                <div className='Description me-2'>
+                <div className='Description me-2  flex-grow-1'>
                   <p className=" mb-auto">{item.descrizione}</p>
                 </div>
                 <div className='d-flex  flex-column'>
@@ -141,8 +141,8 @@ function App() {
               
               
               <div className='d-flex descr-btn-containter '>
-                <div className='Description me-2'>
-                  <p className=" mb-auto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, voluptas quaerat distinctio itaque consequuntur veritatis voluptatibus et, repellat voluptate consectetur iusto commodi iste obcaecati error eligendi sint amet laudantium porro?Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium quae culpa aliquam! Cupiditate totam quos, aliquam earum impedit modi quo asperiores officia, aspernatur, tempore nobis animi necessitatibus hic quaerat in!</p>
+                <div className='Description flex-grow-1 me-2'>
+                  <p className=" mb-auto"> quaerat in!</p>
                 </div>
                 <div className='d-flex  flex-column'>
                   <button className="mb-auto acc-default-btn edit-btn"><MdEdit /></button>
