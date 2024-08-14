@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+body {
+  background-color: var(--body-background);
+}
+
 main{
   max-height: 100vh;
 }
@@ -84,10 +88,12 @@ main{
 .Calendar{
   border: var(--blu-border) solid 2px;
   border-radius: 4px;
+  background-color: white;
 }
 .Map{
   border: var(--blu-border) solid 2px;
   border-radius: 4px;
+  background-color: white;
 }
 
 /*- ---------------calendario e mappa ---------------- -*/

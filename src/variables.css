@@ -1,5 +1,7 @@
 :root {
     --text-color : #1A1B41;
+    /* #ebfaf5 */
+    --body-background:#f7faf9;
 
     --white-background: #ffffff;
     --verde-acqua-background: #C2E7DA;
