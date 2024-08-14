@@ -193,6 +193,7 @@ main{
 
 .descr-btn-containter{
   height: 150px;
+  width: 100%;
 }
 .Description{
   font-size: 18px;
