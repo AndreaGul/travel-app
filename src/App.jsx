@@ -42,6 +42,10 @@ function App() {
     });
   };
 
+  const handleDelete= (indexD) => {
+    setItems(items.filter((e,index) => index !== indexD))
+  }
+
   console.log(items);
 
   return (
@@ -112,13 +116,13 @@ function App() {
               
               
               <div className='d-flex descr-btn-containter '>
-                <div className='Description me-2  flex-grow-1'>
+                <div className='Description flex-grow-1 me-2 '>
                   <p className=" mb-auto">{item.descrizione}</p>
                 </div>
                 <div className='d-flex  flex-column'>
                   <button className="mb-auto acc-default-btn edit-btn"><MdEdit /></button>
                   {/* <button className="mb-auto acc-default-btn edit-btn"><FaSave /></button> */}
-                  <button className="acc-default-btn delete-btn"><MdDelete /></button>
+                  <button onClick={()=> handleDelete(index)} className="acc-default-btn delete-btn"><MdDelete /></button>
                 </div>
               </div>
               
