@@ -98,6 +98,13 @@ main{
 
 /*- ---------------calendario e mappa ---------------- -*/
 
+.no-meta-message{
+  border: var(--blu-border) solid 2px;
+  border-radius: 4px;
+  padding: 20px 0;
+  text-align: center;
+}
+
 /*---------------accordion ----------------*/
 
 

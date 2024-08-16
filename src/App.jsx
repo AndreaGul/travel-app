@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {Offcanvas, Accordion}   from 'react-bootstrap';
 import { MdDelete } from "react-icons/md";
 import { MdEdit } from "react-icons/md";
@@ -15,33 +15,66 @@ function App() {
     titolo:'',
     luogo:'',
     data:'',
-    immagine: null,
     descrizione: '',
   })
 
-  const [items, setItems] = useState([]);
+  const [immagine, setImmagine] = useState(null);
+  const [items, setItems] = useState(()=>{
+    const savedItems = localStorage.getItem('items');
+    return savedItems ? JSON.parse(savedItems) : [];
+  });
+
+  useEffect(()=>{
+    localStorage.setItem('items', JSON.stringify(items));
+  }, [items]);
+
+
   const [isEditing, setIsEditing] = useState(false);
   const [currentEditIndex, setCurrentEditIndex] = useState(null)
 
+  const convertToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+    });
+};
+
   const handleChange = (e)=>{
-    const { name, value, type, files} = e.target;
+    const { name, value} = e.target;
     setFormData ({
       ...formData,
-      [name]: type === 'file' ? files[0]: value,
+      [name]: value,
     })
+  }
+
+  const handleFileChange = async (e) => {
+    const file = e.target.files[0];
+    try {
+        const base64Image = await convertToBase64(file);
+        setImmagine(base64Image)
+    } catch (error) {
+        console.error("Errore nella conversione dell'immagine", error);
+    }
   }
 
   const handleSubmit = (e)=>{
     e.preventDefault();
+
+    const newItem = {...formData, immagine};
+
     if(isEditing){
       setItems(
         items.map((item,index)=>
-        index === currentEditIndex ? formData : item)
+        index === currentEditIndex ? newItem : item)
       )
+      setIsEditing(false);
+      setCurrentEditIndex(null);
       handleCloseOffCanvas();
     }
     else{
-      setItems([...items, formData]);   
+      setItems([...items, newItem]);   
     }
    
 
@@ -49,9 +82,9 @@ function App() {
       titolo:'',
       luogo:'',
       data:'',
-      immagine: null,
       descrizione: '',
     });
+    setImmagine(null);
   };
 
   const handleDelete= (indexD) => {
@@ -59,8 +92,17 @@ function App() {
   }
 
   const handleEdit= (indexE) => {
+    const itemToEdit = items[indexE];
+
     handleShowOffCanvas();
-    setFormData(items[indexE]);
+
+    setFormData({
+      titolo: itemToEdit.titolo,
+      luogo: itemToEdit.luogo,
+      data: itemToEdit.data,
+      descrizione: itemToEdit.descrizione,
+    });
+    setImmagine(itemToEdit.immagine);
     setIsEditing(true);
     setCurrentEditIndex(indexE);
   }
@@ -99,7 +141,7 @@ function App() {
 
                   
                   <h5>Immagine</h5>
-                  <input className='w-100' type="file" name='immagine' value={formData.immagine} onChange={handleChange}/>
+                  <input className='w-100' type="file" name='immagine' value={formData.immagine} onChange={handleFileChange}/>
 
                  
                   <h5>Descrizione</h5>
@@ -117,66 +159,45 @@ function App() {
           <div className="col-8  m-0 pe-0"><div className="Map h-100">Mappa</div></div>
         </div>
         <div>
-        <Accordion className='pb-4'>
-          {items.map((item,index) =>(
-          <Accordion.Item eventKey={index} className='accordion-item'>
-            <Accordion.Header className='custon-accordion-header'>  
-              <label className="accordion-checkbox-container">
-                <input className='accordion-checkbox' type="checkbox" />
-                <span className="custom-checkbox"></span>
-              </label>
-              <h5 className='mb-0'>{item.titolo}</h5>
-            </Accordion.Header>
-            <Accordion.Body  className='d-flex'>
-              
-              <div className="img-travel-container me-3">
-                <img src={item.immagine}/>
-              </div>
-              
-              
-              <div className='d-flex descr-btn-containter '>
-                <div className='Description flex-grow-1 me-2 '>
-                  <p className=" mb-auto">{item.descrizione}</p>
-                </div>
-                <div className='d-flex  flex-column'>
-                  <button onClick={()=> handleEdit(index)} className="mb-auto acc-default-btn edit-btn"><MdEdit /></button>
-                  {/* <button className="mb-auto acc-default-btn edit-btn"><FaSave /></button> */}
-                  <button onClick={()=> handleDelete(index)} className="acc-default-btn delete-btn"><MdDelete /></button>
-                </div>
-              </div>
-              
-            </Accordion.Body>
-          </Accordion.Item>
-          ))}
-          <Accordion.Item eventKey="1" className='accordion-item'>
-            <Accordion.Header className='custon-accordion-header'>  
-              <label className="accordion-checkbox-container">
-                <input className='accordion-checkbox' type="checkbox" />
-                <span className="custom-checkbox"></span>
-              </label>
-              <h5 className='mb-0'>Titolo</h5>
-            </Accordion.Header>
-            <Accordion.Body  className='d-flex'>
-              
-              <div className="img-travel-container me-3 ">
-                <img src="https://store-images.s-microsoft.com/image/apps.30323.14537704372270848.6ecb6038-5426-409a-8660-158d1eb64fb0.08703491-f5dc-4b00-bca6-486b7b293c17?q=90&w=480&h=270" alt="img" className="img-travel"/>
-              </div>
-              
-              
-              <div className='d-flex descr-btn-containter '>
-                <div className='Description flex-grow-1 me-2'>
-                  <p className=" mb-auto"> quaerat in!</p>
-                </div>
-                <div className='d-flex  flex-column'>
-                  <button className="mb-auto acc-default-btn edit-btn"><MdEdit /></button>
-                  {/* <button className="mb-auto acc-default-btn edit-btn"><FaSave /></button> */}
-                  <button className="acc-default-btn delete-btn"><MdDelete /></button>
-                </div>
-              </div>
-              
-            </Accordion.Body>
-          </Accordion.Item>
-        </Accordion>
+        
+          {items.length === 0 ? (
+            <h5 className='no-meta-message'>Nessuna meta pianificata per oggi</h5>
+          ):(
+            <Accordion className='pb-4'>
+            {items.map((item,index) =>(
+              <Accordion.Item eventKey={index} className='accordion-item'>
+                <Accordion.Header className='custon-accordion-header'>  
+                  <label className="accordion-checkbox-container">
+                    <input className='accordion-checkbox' type="checkbox" />
+                    <span className="custom-checkbox"></span>
+                  </label>
+                  <h5 className='mb-0'>{item.titolo}</h5>
+                </Accordion.Header>
+                <Accordion.Body  className='d-flex'>
+                  
+                  <div className="img-travel-container me-3">
+                    <img src={item.immagine}/>
+                  </div>
+                  
+                  
+                  <div className='d-flex descr-btn-containter '>
+                    <div className='Description flex-grow-1 me-2 '>
+                      <p className=" mb-auto">{item.descrizione}</p>
+                    </div>
+                    <div className='d-flex  flex-column'>
+                      <button onClick={()=> handleEdit(index)} className="mb-auto acc-default-btn edit-btn"><MdEdit /></button>
+                      {/* <button className="mb-auto acc-default-btn edit-btn"><FaSave /></button> */}
+                      <button onClick={()=> handleDelete(index)} className="acc-default-btn delete-btn"><MdDelete /></button>
+                    </div>
+                  </div>
+                  
+                </Accordion.Body>
+              </Accordion.Item>
+              ))}
+            </Accordion>
+          )}
+          
+        
 
         
           
