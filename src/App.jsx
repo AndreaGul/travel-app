@@ -2,11 +2,10 @@ import { useEffect, useState } from 'react';
 import {Offcanvas, Accordion}   from 'react-bootstrap';
 import { MdDelete } from "react-icons/md";
 import { MdEdit } from "react-icons/md";
-import { FaSave } from "react-icons/fa";
-
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 function App() {
   const [showOffCanvas, setShowOffCanvas] = useState(false);
-
   const handleCloseOffCanvas = () => setShowOffCanvas(false);
   const handleShowOffCanvas = () => setShowOffCanvas(true);
 
@@ -17,21 +16,26 @@ function App() {
     data:'',
     descrizione: '',
   })
-
   const [immagine, setImmagine] = useState(null);
+
   const [items, setItems] = useState(()=>{
     const savedItems = localStorage.getItem('items');
     return savedItems ? JSON.parse(savedItems) : [];
   });
+
+  const [isEditing, setIsEditing] = useState(false);
+  const [currentEditIndex, setCurrentEditIndex] = useState(null)
+
+
+  const [selectedDate, setSelectedDate]= useState(new Date());
+  const [filteredItems, setFilteredItems] = useState([]);
 
   useEffect(()=>{
     localStorage.setItem('items', JSON.stringify(items));
   }, [items]);
 
 
-  const [isEditing, setIsEditing] = useState(false);
-  const [currentEditIndex, setCurrentEditIndex] = useState(null)
-
+  
   const convertToBase64 = (file) => {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -107,7 +111,20 @@ function App() {
     setCurrentEditIndex(indexE);
   }
 
+  const onDateChange = (date)=>{
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+
+    const formattedDate = `${year}-${month}-${day}`;
+    setSelectedDate(formattedDate);
+    const updatedItems = items.filter(item => item.data === formattedDate);
+
+    setFilteredItems(updatedItems);
+  }
+
   console.log(items);
+  console.log(filteredItems);
 
   return (
     <>
@@ -155,46 +172,48 @@ function App() {
         </div>
       
         <div className="cal-map-container m-0 mb-5  row g-4">
-          <div className="col-4 m-0 ps-0"><div className="Calendar h-100">Calendario</div></div>
+          <div className="col-4 m-0 ps-0"><div className="Calendar h-100">
+            <Calendar onChange={onDateChange} value={selectedDate}/>
+            </div></div>
           <div className="col-8  m-0 pe-0"><div className="Map h-100">Mappa</div></div>
         </div>
         <div>
         
-          {items.length === 0 ? (
-            <h5 className='no-meta-message'>Nessuna meta pianificata per oggi</h5>
+          {filteredItems.length > 0 ? (
+             <Accordion className='pb-4'>
+             {filteredItems.map((item,index) =>(
+               <Accordion.Item eventKey={index} className='accordion-item'>
+                 <Accordion.Header className='custon-accordion-header'>  
+                   <label className="accordion-checkbox-container">
+                     <input className='accordion-checkbox' type="checkbox" />
+                     <span className="custom-checkbox"></span>
+                   </label>
+                   <h5 className='mb-0'>{item.titolo}</h5>
+                 </Accordion.Header>
+                 <Accordion.Body  className='d-flex'>
+                   
+                   <div className="img-travel-container me-3">
+                     <img src={item.immagine}/>
+                   </div>
+                   
+                   
+                   <div className='d-flex descr-btn-containter '>
+                     <div className='Description flex-grow-1 me-2 '>
+                       <p className=" mb-auto">{item.descrizione}</p>
+                     </div>
+                     <div className='d-flex  flex-column'>
+                       <button onClick={()=> handleEdit(index)} className="mb-auto acc-default-btn edit-btn"><MdEdit /></button>
+                       <button onClick={()=> handleDelete(index)} className="acc-default-btn delete-btn"><MdDelete /></button>
+                     </div>
+                   </div>
+                   
+                 </Accordion.Body>
+               </Accordion.Item>
+               ))}
+             </Accordion>    
           ):(
-            <Accordion className='pb-4'>
-            {items.map((item,index) =>(
-              <Accordion.Item eventKey={index} className='accordion-item'>
-                <Accordion.Header className='custon-accordion-header'>  
-                  <label className="accordion-checkbox-container">
-                    <input className='accordion-checkbox' type="checkbox" />
-                    <span className="custom-checkbox"></span>
-                  </label>
-                  <h5 className='mb-0'>{item.titolo}</h5>
-                </Accordion.Header>
-                <Accordion.Body  className='d-flex'>
-                  
-                  <div className="img-travel-container me-3">
-                    <img src={item.immagine}/>
-                  </div>
-                  
-                  
-                  <div className='d-flex descr-btn-containter '>
-                    <div className='Description flex-grow-1 me-2 '>
-                      <p className=" mb-auto">{item.descrizione}</p>
-                    </div>
-                    <div className='d-flex  flex-column'>
-                      <button onClick={()=> handleEdit(index)} className="mb-auto acc-default-btn edit-btn"><MdEdit /></button>
-                      {/* <button className="mb-auto acc-default-btn edit-btn"><FaSave /></button> */}
-                      <button onClick={()=> handleDelete(index)} className="acc-default-btn delete-btn"><MdDelete /></button>
-                    </div>
-                  </div>
-                  
-                </Accordion.Body>
-              </Accordion.Item>
-              ))}
-            </Accordion>
+            <h5 className='no-meta-message'>Nessuna meta pianificata per oggi</h5>
+           
           )}
           
         
