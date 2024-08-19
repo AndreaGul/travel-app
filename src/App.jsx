@@ -15,6 +15,7 @@ function App() {
     luogo:'',
     data:'',
     descrizione: '',
+    isChecked: false,
   })
   const [immagine, setImmagine] = useState(null);
 
@@ -111,6 +112,12 @@ function App() {
     setCurrentEditIndex(indexE);
   }
 
+  const handleCheckboxChange = (index) => {
+    const updatedItems = [...items];
+    updatedItems[index].isChecked = !updatedItems[index].isChecked;
+    setItems(updatedItems);
+  };
+
   const onDateChange = (date)=>{
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -185,7 +192,12 @@ function App() {
                <Accordion.Item eventKey={index} className='accordion-item'>
                  <Accordion.Header className='custon-accordion-header'>  
                    <label className="accordion-checkbox-container">
-                     <input className='accordion-checkbox' type="checkbox" />
+                     <input 
+                     className='accordion-checkbox' 
+                     type="checkbox"
+                     checked={item.isChecked}
+                     onChange={()=>handleCheckboxChange(index)} 
+                     />
                      <span className="custom-checkbox"></span>
                    </label>
                    <h5 className='mb-0'>{item.titolo}</h5>
