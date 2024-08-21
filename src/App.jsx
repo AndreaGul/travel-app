@@ -84,13 +84,12 @@ function App() {
       )
       setIsEditing(false);
       setCurrentEditIndex(null);
-      handleCloseOffCanvas();
     }
     else{
       setItems([...items, newItem]);   
     }
 
-   
+    handleCloseOffCanvas();
     setFormData({
       titolo:'',
       luogo:'',
@@ -134,7 +133,7 @@ function App() {
 
     const formattedDate = `${year}-${month}-${day}`;
     setSelectedDate(formattedDate);
-    
+
     const updatedItems = items.filter(item => item.data === formattedDate);
     setFilteredItems(updatedItems);
   }
@@ -157,7 +156,7 @@ function App() {
           
           <Offcanvas className="offcanvas-container" show={showOffCanvas} onHide={handleCloseOffCanvas} placement='end'>
             <Offcanvas.Header className='offcanvas-header p-0' closeButton>
-              <h3 className='p-0 m-0'>{isEditing ? 'Modifica' : 'Aggiungi meta'}Aggiungi meta</h3>
+              <h3 className='p-0 m-0'>{isEditing ? 'Modifica' : 'Aggiungi meta'}</h3>
 
             </Offcanvas.Header>
             <Offcanvas.Body className='p-0'>
