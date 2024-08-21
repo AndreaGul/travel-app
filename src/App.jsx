@@ -35,7 +35,15 @@ function App() {
     localStorage.setItem('items', JSON.stringify(items));
   }, [items]);
 
+  useEffect(() => {
+    const today = new Date();
+    onDateChange(today);
+  }, []);
 
+  useEffect(() => {
+    const updatedItems = items.filter(item => item.data === selectedDate);
+    setFilteredItems(updatedItems);
+  }, [items, selectedDate]);
   
   const convertToBase64 = (file) => {
     return new Promise((resolve, reject) => {
@@ -81,8 +89,8 @@ function App() {
     else{
       setItems([...items, newItem]);   
     }
-   
 
+   
     setFormData({
       titolo:'',
       luogo:'',
@@ -119,14 +127,15 @@ function App() {
   };
 
   const onDateChange = (date)=>{
+    
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const day = String(date.getDate()).padStart(2, '0');
 
     const formattedDate = `${year}-${month}-${day}`;
     setSelectedDate(formattedDate);
+    
     const updatedItems = items.filter(item => item.data === formattedDate);
-
     setFilteredItems(updatedItems);
   }
 
