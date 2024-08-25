@@ -4,6 +4,8 @@ import { MdDelete } from "react-icons/md";
 import { MdEdit } from "react-icons/md";
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+import TomTomMap from './Map';
+
 function App() {
   const [showOffCanvas, setShowOffCanvas] = useState(false);
   const handleCloseOffCanvas = () => setShowOffCanvas(false);
@@ -145,6 +147,7 @@ function App() {
     <>
       
       <main className='container py-4 global-text'>
+      
         <div className='pb-5 d-flex justify-content-between align-items-center'>
           <h1 className='fw-semibold'>Pianifica il tuo viaggio</h1>
           <div>
@@ -190,7 +193,7 @@ function App() {
           <div className="col-4 m-0 ps-0"><div className="Calendar h-100">
             <Calendar onChange={onDateChange} value={selectedDate}/>
             </div></div>
-          <div className="col-8  m-0 pe-0"><div className="Map h-100">Mappa</div></div>
+          <div className="col-8  m-0 pe-0"><div className="Map h-100"><TomTomMap /></div></div>
         </div>
         <div>
         

@@ -133,6 +133,19 @@ main{
   border: var(--blu-border) solid 2px;
   border-radius: 4px;
   background-color: white;
+  overflow: hidden;
+  position: relative;
+}
+
+.mapboxgl-canvas{
+  display: block;
+}
+
+.mapboxgl-control-container{
+  position: absolute;
+  top: 0;
+  right: 2px;
+  
 }
 
 /*- ---------------calendario e mappa ---------------- -*/
