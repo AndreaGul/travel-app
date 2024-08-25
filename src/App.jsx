@@ -106,7 +106,7 @@ function App() {
   }
 
   const handleEdit= (indexE) => {
-    const itemToEdit = items[indexE];
+    const itemToEdit = filteredItems[indexE];
 
     handleShowOffCanvas();
 
