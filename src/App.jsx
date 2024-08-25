@@ -10,7 +10,7 @@ function App() {
   const [showOffCanvas, setShowOffCanvas] = useState(false);
   const handleCloseOffCanvas = () => setShowOffCanvas(false);
   const handleShowOffCanvas = () => setShowOffCanvas(true);
-
+  
 
   const [formData, setFormData] = useState({
     titolo:'',
@@ -32,6 +32,8 @@ function App() {
 
   const [selectedDate, setSelectedDate]= useState(new Date());
   const [filteredItems, setFilteredItems] = useState([]);
+
+  const [address,setAddress] = useState(null);
 
   useEffect(()=>{
     localStorage.setItem('items', JSON.stringify(items));
@@ -140,8 +142,17 @@ function App() {
     setFilteredItems(updatedItems);
   }
 
+
+  const handleAccordionClick = (index) => {
+    const address = filteredItems[index]?.luogo;
+    if (address) {
+      setAddress(address);
+    }
+  };
+
   console.log(items);
   console.log(filteredItems);
+ 
 
   return (
     <>
@@ -193,7 +204,11 @@ function App() {
           <div className="col-4 m-0 ps-0"><div className="Calendar h-100">
             <Calendar onChange={onDateChange} value={selectedDate}/>
             </div></div>
-          <div className="col-8  m-0 pe-0"><div className="Map h-100"><TomTomMap /></div></div>
+          <div className="col-8  m-0 pe-0">
+            <div className="Map h-100">
+              <TomTomMap address={address} />
+            </div>
+          </div>
         </div>
         <div>
         
@@ -201,7 +216,11 @@ function App() {
              <Accordion className='pb-4'>
              {filteredItems.map((item,index) =>(
                <Accordion.Item eventKey={index} className='accordion-item'>
-                 <Accordion.Header className='custon-accordion-header'>  
+                 <Accordion.Header 
+                 className='custon-accordion-header'
+                 onClick={() => handleAccordionClick(index)}
+                 >  
+
                    <label className="accordion-checkbox-container">
                      <input 
                      className='accordion-checkbox' 
