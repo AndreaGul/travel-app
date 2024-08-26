@@ -17,8 +17,9 @@ function App() {
     descrizione: '',
     isChecked: false,
   });
-
   const [immagine, setImmagine] = useState(null);
+
+  const [formErrors, setFormErrors] = useState({ titolo: '', data: '' });
 
   const [items, setItems] = useState(() => {
     const savedItems = localStorage.getItem('items');
@@ -46,20 +47,21 @@ function App() {
     setFilteredItems(items[selectedDate] || []);
   }, [items, selectedDate]);
 
-  const convertToBase64 = (file) => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = error => reject(error);
-    });
-  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
       [name]: value,
+    });
+  };
+
+  const convertToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = error => reject(error);
     });
   };
 
@@ -73,8 +75,31 @@ function App() {
     }
   };
 
+  const validateForm = () => {
+    let valid = true;
+    const newErrors = { titolo: '', data: '' };
+  
+    if (!formData.titolo) {
+      newErrors.titolo = 'Il titolo è obbligatorio';
+      valid = false;
+    }
+  
+    if (!formData.data) {
+      newErrors.data = 'La data è obbligatoria';
+      valid = false;
+    }
+  
+    setFormErrors(newErrors);
+    return valid;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!validateForm()) {
+      return; // Se il modulo non è valido, interrompe la sottomissione
+    }
+
     const newItem = { ...formData, immagine };
     const dateKey = formData.data;
 
@@ -183,12 +208,14 @@ function App() {
                 <form onSubmit={handleSubmit}>
                   <h5>Titolo</h5>
                   <input className='w-100' type="text" name='titolo' value={formData.titolo} onChange={handleChange} />
+                  {formErrors.titolo && <p className="text-danger">{formErrors.titolo}</p>}
 
                   <h5>Luogo</h5>
                   <input className='w-100' type="text" name='luogo' value={formData.luogo} onChange={handleChange} />
 
                   <h5>Data</h5>
                   <input type="date" name='data' value={formData.data} onChange={handleChange} />
+                  {formErrors.data && <p className="text-danger">{formErrors.data}</p>}
 
                   <h5>Immagine</h5>
                   <input className='w-100' type="file" name='immagine' onChange={handleFileChange} />
