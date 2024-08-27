@@ -302,7 +302,7 @@ function App() {
           {filteredItems.length > 0 ? (
             <Accordion className='pb-4'>
               {filteredItems.map((item, index) => (
-                <Accordion.Item eventKey={index} className='accordion-item'>
+                <Accordion.Item eventKey={index} key={index} className='accordion-item'>
                   <Accordion.Header
                     className='custon-accordion-header'
                     onClick={() => handleAccordionClick(index)}
