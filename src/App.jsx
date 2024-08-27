@@ -7,7 +7,19 @@ import TomTomMap from './Map';
 
 function App() {
   const [showOffCanvas, setShowOffCanvas] = useState(false);
-  const handleCloseOffCanvas = () => setShowOffCanvas(false);
+  const handleCloseOffCanvas = () => {
+    setShowOffCanvas(false)
+    setFormData({
+      titolo: '',
+      luogo: '',
+      data: '',
+      descrizione: '',
+      isChecked: false,
+    });
+    setImmagine(null);
+    setRemoveImage(false);
+    setIsEditing(false);
+    };
   const handleShowOffCanvas = () => setShowOffCanvas(true);
 
   const [formData, setFormData] = useState({
@@ -28,6 +40,7 @@ function App() {
 
   const [isEditing, setIsEditing] = useState(false);
   const [currentEditIndex, setCurrentEditIndex] = useState(null);
+  const [removeImage, setRemoveImage] = useState(false);
 
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [filteredItems, setFilteredItems] = useState([]);
@@ -92,6 +105,48 @@ function App() {
     setFormErrors(newErrors);
     return valid;
   };
+  
+  const renderImageSection = () => {
+    switch (true) {
+      case immagine && isEditing:
+        return (
+          <div className='form-remove-img'>
+            <input className='w-100' type="file" name='immagine' onChange={handleFileChange} />
+            
+            <div className='d-flex my-2'>
+              <img src={immagine} alt="Immagine caricata" className="w-50 me-2" />
+              <label >
+                <input className='me-1' type="checkbox" checked={removeImage} onChange={() => setRemoveImage(!removeImage)}/>
+                Elimina immagine caricata
+              </label>
+            </div>
+          </div>
+        );
+  
+      case immagine && !removeImage:
+        return (
+          <div className='form-remove-img'>
+            <label >
+              <input className='me-1' type="checkbox" checked={removeImage} onChange={handleRemoveImageChange}/>
+              Annulla caricamento
+            </label>
+          </div>
+        );
+  
+      default:
+        return (
+          <input className='w-100' type="file" name='immagine' onChange={handleFileChange}/>
+        );
+    }
+  };
+
+  const handleRemoveImageChange = () => {
+    setRemoveImage(!removeImage);
+    if (!removeImage) {
+      setImmagine(null);
+    }
+    setRemoveImage(false);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -100,7 +155,7 @@ function App() {
       return; // Se il modulo non è valido, interrompe la sottomissione
     }
 
-    const newItem = { ...formData, immagine };
+    const newItem = { ...formData, immagine: removeImage ? null : immagine };
     const dateKey = formData.data;
 
     setItems((prevItems) => {
@@ -129,6 +184,7 @@ function App() {
       isChecked: false,
     });
     setImmagine(null);
+    setRemoveImage(false);
   };
 
   const handleDelete = (indexD) => {
@@ -218,8 +274,8 @@ function App() {
                   {formErrors.data && <p className="text-danger">{formErrors.data}</p>}
 
                   <h5>Immagine</h5>
-                  <input className='w-100' type="file" name='immagine' onChange={handleFileChange} />
-
+                  {renderImageSection()}
+                  
                   <h5>Descrizione</h5>
                   <textarea rows={4} className="w-100 d-block" name="descrizione" value={formData.descrizione} onChange={handleChange}></textarea>
 

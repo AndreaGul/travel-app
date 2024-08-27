@@ -70,6 +70,15 @@ main{
   margin: 16px 0 4px 0;
 }
 
+.form-remove-img img{
+  border: black 1px solid;
+  height: 100px;
+  object-fit: cover;
+}
+
+.form-remove-img input{
+  vertical-align: baseline;
+}
 
 .btn-form {
   margin-top: 10px;
