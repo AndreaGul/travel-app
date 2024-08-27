@@ -169,7 +169,7 @@ function App() {
         if (!updatedItems[dateKey]) {
           updatedItems[dateKey] = [];
         }
-        updatedItems[dateKey].push(newItem);
+        updatedItems[dateKey]=[...updatedItems[dateKey],newItem];
       }
 
       return updatedItems;
