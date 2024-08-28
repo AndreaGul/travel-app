@@ -90,10 +90,10 @@ main{
 /*---------------calendario e mappa ----------------*/
 
 .cal-map-container{
-  height: 360px;
   width: 100%;
   display: flex;
 }
+
 .Calendar{
   border: var(--blu-border) solid 2px;
   border-radius: 4px;
@@ -139,6 +139,7 @@ main{
 
 
 .Map{
+  height: 200px;
   border: var(--blu-border) solid 2px;
   border-radius: 4px;
   background-color: white;
@@ -253,8 +254,8 @@ main{
 
 .img-travel-container img{
   display: block;
-  width: 200px;
-  height: 150px;
+  width: 100px;
+  height: 100%;
   object-fit: cover;
   object-position:  center center;
 }
@@ -268,6 +269,7 @@ main{
   overflow-y: scroll;
   margin: 4px;
   width: auto;
+  word-break: break-all;
 }
 
 .acc-default-btn{
@@ -305,3 +307,18 @@ main{
 
 
 /*- ---------------accordion ---------------- -*/
+
+
+@media screen and (min-width: 768px) {
+  .cal-map-container{
+    height: 360px;
+  }
+  .Map{
+    height: 100%;
+
+    }
+  .img-travel-container img{
+    width: 200px;
+    height: 150px;
+  }
+}

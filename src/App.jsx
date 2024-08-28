@@ -247,8 +247,8 @@ function App() {
   return (
     <>
       <main className='container py-4 global-text'>
-        <div className='pb-5 d-flex justify-content-between align-items-center'>
-          <h1 className='fw-semibold'>Pianifica il tuo viaggio</h1>
+        <div className='pb-4 pb-md-5 text-center d-md-flex justify-content-between align-items-center'>
+          <h1 className='fw-semibold pb-1 pb-md-0'>Pianifica il tuo viaggio</h1>
           <div>
             <button onClick={handleShowOffCanvas} className='btn-default btn-meta'>
               Aggiungi meta
@@ -279,21 +279,21 @@ function App() {
                   <h5>Descrizione</h5>
                   <textarea rows={4} className="w-100 d-block" name="descrizione" value={formData.descrizione} onChange={handleChange}></textarea>
 
-                  <button type='submit' className='btn-default btn-form'>{isEditing ? 'Conferma' : 'Aggiungi'}</button>
+                  <button type='submit' className='btn-default btn-form' >{isEditing ? 'Conferma' : 'Aggiungi'}</button>
                 </form>
               </div>
             </Offcanvas.Body>
           </Offcanvas>
         </div>
 
-        <div className="cal-map-container m-0 mb-5 row g-4">
-          <div className="col-4 m-0 ps-0">
+        <div className="cal-map-container m-0 mb-4 mb-md-5 row g-4">
+          <div className="col-12 col-md-6 col-lg-4 m-0 p-0 pe-md-1">
             <div className="Calendar h-100">
               <Calendar onChange={onDateChange} value={selectedDate} />
             </div>
           </div>
-          <div className="col-8 m-0 pe-0">
-            <div className="Map h-100">
+          <div className="col-12 col-md-6 col-lg-8 m-0 mt-3 m-md-0 p-0 ps-md-1">
+            <div className="Map">
               <TomTomMap address={address} />
             </div>
           </div>
@@ -319,7 +319,7 @@ function App() {
                     <h5 className='mb-0'>{item.titolo}</h5>
                   </Accordion.Header>
                   <Accordion.Body className='d-flex'>
-                    <div className="img-travel-container me-3">
+                    <div className="img-travel-container me-2 me-md-3">
                       <img src={item.immagine} alt={item.titolo} />
                     </div>
                     <div className='d-flex descr-btn-containter'>
