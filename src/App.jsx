@@ -263,11 +263,11 @@ function App() {
               <div className="form-container global-input-title  global-input">
                 <form onSubmit={handleSubmit}>
                   <h5>Titolo</h5>
-                  <input className='w-100' type="text" name='titolo' value={formData.titolo} onChange={handleChange} />
+                  <input className='w-100' type="text" name='titolo' value={formData.titolo} onChange={handleChange} placeholder='Colosseo'/>
                   {formErrors.titolo && <p className="text-danger">{formErrors.titolo}</p>}
 
                   <h5>Luogo</h5>
-                  <input className='w-100' type="text" name='luogo' value={formData.luogo} onChange={handleChange} />
+                  <input className='w-100' type="text" name='luogo' value={formData.luogo} onChange={handleChange} placeholder='Piazza del Colosseo, Roma, Italia'/>
 
                   <h5>Data</h5>
                   <input type="date" name='data' value={formData.data} onChange={handleChange} />
@@ -277,7 +277,7 @@ function App() {
                   {renderImageSection()}
                   
                   <h5>Descrizione</h5>
-                  <textarea rows={4} className="w-100 d-block" name="descrizione" value={formData.descrizione} onChange={handleChange}></textarea>
+                  <textarea rows={4} className="w-100 d-block" name="descrizione" value={formData.descrizione} onChange={handleChange} placeholder='Visita al colosseo'></textarea>
 
                   <button type='submit' className='btn-default btn-form' >{isEditing ? 'Conferma' : 'Aggiungi'}</button>
                 </form>
