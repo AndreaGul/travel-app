@@ -16,6 +16,7 @@ function App() {
       descrizione: '',
       isChecked: false,
     });
+    setFormErrors({ titolo: '', data: '' })
     setImmagine(null);
     setRemoveImage(false);
     setIsEditing(false);
